@@ -5,13 +5,23 @@ import { Phone, Mail, MapPin } from 'lucide-react'
 
 export default function ContactForm() {
   useEffect(() => {
-    // Cal.com inline embed script
+    // Cal.com inline embed script with proper types
+    interface CalApi {
+      q?: any[]
+      loaded?: boolean
+      ns?: Record<string, any>
+      [key: string]: any
+    }
+
     (function (C: any, A: string, L: string) {
-      let p = function (a: any, ar: any) { a.q.push(ar); }
-      let d = C.document
+      const p = function (a: CalApi, ar: any) {
+        a.q = a.q || []
+        a.q.push(ar)
+      }
+      const d = C.document
       C.Cal = C.Cal || function () {
-        let cal = C.Cal
-        let ar = arguments
+        const cal: CalApi = C.Cal
+        const ar = arguments
         if (!cal.loaded) {
           cal.ns = {}
           cal.q = cal.q || []
@@ -19,10 +29,11 @@ export default function ContactForm() {
           cal.loaded = true
         }
         if (ar[0] === L) {
-          const api = function () { p(api, arguments) }
+          const api: CalApi = function () { p(api, arguments) } as any
           const namespace = ar[1]
           api.q = api.q || []
           if (typeof namespace === "string") {
+            cal.ns = cal.ns || {}
             cal.ns[namespace] = cal.ns[namespace] || api
             p(cal.ns[namespace], ar)
             p(cal, ["initNamespace", namespace])
@@ -33,9 +44,10 @@ export default function ContactForm() {
       }
     })(window, "https://app.cal.com/embed/embed.js", "init")
 
-    ;(window as any).Cal("init", "45min", { origin: "https://app.cal.com" })
+    const w = window as any
+    w.Cal("init", "45min", { origin: "https://app.cal.com" })
 
-    ;(window as any).Cal.ns["45min"]("inline", {
+    w.Cal.ns["45min"]("inline", {
       elementOrSelector: "#my-cal-inline-45min",
       config: {
         layout: "month_view",
@@ -45,7 +57,7 @@ export default function ContactForm() {
       calLink: "alsatech/45min",
     })
 
-    ;(window as any).Cal.ns["45min"]("ui", {
+    w.Cal.ns["45min"]("ui", {
       theme: "dark",
       cssVarsPerTheme: {
         light: { "cal-brand": "#ff4606" },
