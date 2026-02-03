@@ -1,73 +1,8 @@
 'use client'
 
-import { useEffect } from "react"
 import { Phone, Mail, MapPin } from 'lucide-react'
 
 export default function ContactForm() {
-  useEffect(() => {
-    // Cal.com inline embed script with proper types
-    interface CalApi {
-      q?: any[]
-      loaded?: boolean
-      ns?: Record<string, any>
-      [key: string]: any
-    }
-
-    (function (C: any, A: string, L: string) {
-      const p = function (a: CalApi, ar: any) {
-        a.q = a.q || []
-        a.q.push(ar)
-      }
-      const d = C.document
-      C.Cal = C.Cal || function () {
-        const cal: CalApi = C.Cal
-        const ar = arguments
-        if (!cal.loaded) {
-          cal.ns = {}
-          cal.q = cal.q || []
-          d.head.appendChild(d.createElement("script")).src = A
-          cal.loaded = true
-        }
-        if (ar[0] === L) {
-          const api: CalApi = function () { p(api, arguments) } as any
-          const namespace = ar[1]
-          api.q = api.q || []
-          if (typeof namespace === "string") {
-            cal.ns = cal.ns || {}
-            cal.ns[namespace] = cal.ns[namespace] || api
-            p(cal.ns[namespace], ar)
-            p(cal, ["initNamespace", namespace])
-          } else p(cal, ar)
-          return
-        }
-        p(cal, ar)
-      }
-    })(window, "https://app.cal.com/embed/embed.js", "init")
-
-    const w = window as any
-    w.Cal("init", "45min", { origin: "https://app.cal.com" })
-
-    w.Cal.ns["45min"]("inline", {
-      elementOrSelector: "#my-cal-inline-45min",
-      config: {
-        layout: "month_view",
-        useSlotsViewOnSmallScreen: "true",
-        theme: "dark"
-      },
-      calLink: "alsatech/45min",
-    })
-
-    w.Cal.ns["45min"]("ui", {
-      theme: "dark",
-      cssVarsPerTheme: {
-        light: { "cal-brand": "#ff4606" },
-        dark: { "cal-brand": "#ff4606" }
-      },
-      hideEventTypeDetails: false,
-      layout: "month_view"
-    })
-  }, [])
-
   return (
     <section className="section-padding bg-bg-primary">
       <div className="container mx-auto max-w-6xl">
@@ -78,12 +13,17 @@ export default function ContactForm() {
           Agenda una consultoría gratuita de 45 minutos y descubre cómo podemos ayudarte
         </p>
 
-        {/* Cal.com inline embed */}
-        <div
-          id="my-cal-inline-45min"
-          className="w-full overflow-auto glass-card-light p-6 mb-16"
-          style={{ minHeight: '700px' }}
-        ></div>
+        {/* Cal.com iframe embed */}
+        <div className="glass-card-light p-6 mb-16" style={{ minHeight: '700px' }}>
+          <iframe
+            src="https://cal.com/alsatech/45min?embed=true&theme=dark"
+            width="100%"
+            height="700"
+            frameBorder="0"
+            style={{ border: 0 }}
+            title="Agendar Consultoría"
+          />
+        </div>
 
         {/* Contact Information */}
         <div className="mt-12">
