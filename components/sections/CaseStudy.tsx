@@ -88,40 +88,6 @@ export default function CaseStudy() {
           </div>
         </div>
 
-        <div className="text-center mt-12">
-          <a
-            href="#contacto"
-            onClick={(e) => {
-              e.preventDefault()
-              const element = document.querySelector('#contacto')
-              if (element) {
-                const headerOffset = 96
-                const elementPosition = element.getBoundingClientRect().top
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                })
-              }
-            }}
-            className="text-accent hover:text-accent-dark font-semibold text-lg uppercase tracking-wider inline-flex items-center cursor-pointer"
-          >
-            Conversemos sobre tu proyecto
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   )

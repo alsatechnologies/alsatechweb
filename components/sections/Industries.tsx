@@ -97,29 +97,10 @@ export default function Industries() {
           <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
             ¿Tu sector es diferente?
           </h3>
-          <p className="text-text-muted text-lg mb-8 leading-relaxed">
+          <p className="text-text-muted text-lg leading-relaxed">
             Nuestra experiencia en transformación digital se adapta a cualquier industria.
             Diseñamos soluciones personalizadas según tus necesidades específicas.
           </p>
-          <a
-            href="#contacto"
-            onClick={(e) => {
-              e.preventDefault()
-              const element = document.querySelector('#contacto')
-              if (element) {
-                const headerOffset = 96
-                const elementPosition = element.getBoundingClientRect().top
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                })
-              }
-            }}
-            className="btn-primary inline-block cursor-pointer"
-          >
-            Conversemos sobre tu proyecto
-          </a>
         </div>
       </div>
     </section>

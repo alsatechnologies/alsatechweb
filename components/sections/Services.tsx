@@ -88,7 +88,7 @@ export default function Services() {
                 <p className="text-text-muted mb-6 text-base leading-relaxed">
                   {service.description}
                 </p>
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2">
                 {service.features.map((feature, idx) => (
                   <li key={idx} className="text-text-muted text-base flex items-start">
                     <span className="text-accent mr-2">✓</span>
@@ -96,25 +96,6 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href={`/servicios/${service.id}`}
-                className="text-accent hover:text-accent-dark font-semibold text-sm uppercase tracking-wider inline-flex items-center"
-              >
-                Ver más
-                <svg
-                  className="w-4 h-4 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
               </div>
             </div>
           ))}
