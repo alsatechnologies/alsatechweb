@@ -1,9 +1,24 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function CaseStudy() {
   return (
-    <section className="section-padding bg-bg-secondary">
-      <div className="container mx-auto max-w-6xl">
+    <section className="section-padding bg-bg-secondary relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/components_remix(3).png"
+          alt="Background"
+          fill
+          className="object-cover opacity-10"
+          priority
+        />
+      </div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-bg-secondary/60 z-[1]" />
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <h2 className="heading-display text-4xl sm:text-5xl md:text-6xl mb-16 text-center text-white">
           Caso de Éxito Destacado
         </h2>
