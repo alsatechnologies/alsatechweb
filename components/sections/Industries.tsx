@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import Image from 'next/image'
 import { GraduationCap, Settings, HeartPulse, DollarSign, ShoppingBag, Truck, Building2, Sprout } from 'lucide-react'
 
@@ -100,12 +101,25 @@ export default function Industries() {
             Nuestra experiencia en transformación digital se adapta a cualquier industria.
             Diseñamos soluciones personalizadas según tus necesidades específicas.
           </p>
-          <Link
-            href="/contacto"
-            className="btn-primary inline-block"
+          <a
+            href="#contacto"
+            onClick={(e) => {
+              e.preventDefault()
+              const element = document.querySelector('#contacto')
+              if (element) {
+                const headerOffset = 96
+                const elementPosition = element.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                })
+              }
+            }}
+            className="btn-primary inline-block cursor-pointer"
           >
             Conversemos sobre tu proyecto
-          </Link>
+          </a>
         </div>
       </div>
     </section>

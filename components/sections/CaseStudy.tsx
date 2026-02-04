@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import Image from 'next/image'
 
 export default function CaseStudy() {
@@ -10,13 +11,13 @@ export default function CaseStudy() {
           src="/components_remix(3).png"
           alt="Background"
           fill
-          className="object-cover opacity-10"
+          className="object-cover opacity-100"
           priority
         />
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-bg-secondary/60 z-[1]" />
+      <div className="absolute inset-0 bg-bg-secondary/0 z-[1]" />
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <h2 className="heading-display text-4xl sm:text-5xl md:text-6xl mb-16 text-center text-white">
@@ -88,11 +89,24 @@ export default function CaseStudy() {
         </div>
 
         <div className="text-center mt-12">
-          <Link
-            href="/casos"
-            className="text-accent hover:text-accent-dark font-semibold text-lg uppercase tracking-wider inline-flex items-center"
+          <a
+            href="#contacto"
+            onClick={(e) => {
+              e.preventDefault()
+              const element = document.querySelector('#contacto')
+              if (element) {
+                const headerOffset = 96
+                const elementPosition = element.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                })
+              }
+            }}
+            className="text-accent hover:text-accent-dark font-semibold text-lg uppercase tracking-wider inline-flex items-center cursor-pointer"
           >
-            Ver caso completo
+            Conversemos sobre tu proyecto
             <svg
               className="w-5 h-5 ml-2"
               fill="none"
@@ -106,7 +120,7 @@ export default function CaseStudy() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

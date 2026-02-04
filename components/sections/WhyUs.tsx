@@ -56,7 +56,7 @@ export default function WhyUs() {
           viewport={{ once: true }}
         >
           <h2 className="heading-display text-4xl sm:text-5xl md:text-6xl mb-4 text-center text-white">
-            Por Qué Alsatechologies
+            Por Qué Alsatech
           </h2>
           <p className="text-text-muted text-center text-lg mb-16 max-w-3xl mx-auto">
             Ventajas que nos distinguen en el mercado

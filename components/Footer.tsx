@@ -1,25 +1,41 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Footer() {
   const servicios = [
-    { href: '/servicios/software-medida', label: 'Desarrollo de Software a la Medida' },
-    { href: '/servicios/inteligencia-artificial', label: 'Aplicaciones con IA' },
-    { href: '/servicios/business-intelligence', label: 'Análisis de Datos y BI' },
-    { href: '/servicios/apps-moviles', label: 'Apps Móviles y Web' },
-    { href: '/servicios/modernizacion', label: 'Modernización de Sistemas Legacy' },
+    { href: '#servicios', label: 'Desarrollo de Software a la Medida' },
+    { href: '#servicios', label: 'Aplicaciones con IA' },
+    { href: '#servicios', label: 'Análisis de Datos y BI' },
+    { href: '#servicios', label: 'Apps Móviles y Web' },
+    { href: '#servicios', label: 'Modernización de Sistemas Legacy' },
   ]
 
   const industrias = [
-    { href: '/industrias#educacion', label: 'Educación' },
-    { href: '/industrias#manufactura', label: 'Manufactura' },
-    { href: '/industrias#salud', label: 'Salud' },
-    { href: '/industrias#finanzas', label: 'Finanzas' },
-    { href: '/industrias#retail', label: 'Retail' },
-    { href: '/industrias#logistica', label: 'Logística' },
-    { href: '/industrias#construccion', label: 'Construcción' },
-    { href: '/industrias#agroindustria', label: 'Agroindustria' },
+    { href: '#industrias', label: 'Educación' },
+    { href: '#industrias', label: 'Manufactura' },
+    { href: '#industrias', label: 'Salud' },
+    { href: '#industrias', label: 'Finanzas' },
+    { href: '#industrias', label: 'Retail' },
+    { href: '#industrias', label: 'Logística' },
+    { href: '#industrias', label: 'Construcción' },
+    { href: '#industrias', label: 'Agroindustria' },
   ]
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      const headerOffset = 96
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   return (
     <footer className="relative bg-bg-secondary border-t border-white/20 overflow-hidden">
@@ -60,14 +76,15 @@ export default function Footer() {
               Servicios
             </h3>
             <ul className="space-y-2">
-              {servicios.map((item) => (
-                <li key={item.href}>
-                  <Link
+              {servicios.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
+                  <a
                     href={item.href}
-                    className="text-text-muted hover:text-accent transition-colors text-md"
+                    onClick={(e) => handleScrollTo(e, item.href)}
+                    className="text-text-muted hover:text-accent transition-colors text-md cursor-pointer"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -79,14 +96,15 @@ export default function Footer() {
               Industrias
             </h3>
             <ul className="space-y-2">
-              {industrias.map((item) => (
-                <li key={item.href}>
-                  <Link
+              {industrias.map((item, index) => (
+                <li key={`${item.href}-${index}`}>
+                  <a
                     href={item.href}
-                    className="text-text-muted hover:text-accent transition-colors text-md"
+                    onClick={(e) => handleScrollTo(e, item.href)}
+                    className="text-text-muted hover:text-accent transition-colors text-md cursor-pointer"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

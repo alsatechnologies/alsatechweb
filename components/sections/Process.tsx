@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
@@ -274,11 +273,24 @@ export default function Process() {
         </div>
 
         <div className="text-center mt-12">
-          <Link
-            href="/proceso"
-            className="text-accent hover:text-accent-dark font-semibold text-lg uppercase tracking-wider inline-flex items-center"
+          <a
+            href="#contacto"
+            onClick={(e) => {
+              e.preventDefault()
+              const element = document.querySelector('#contacto')
+              if (element) {
+                const headerOffset = 96
+                const elementPosition = element.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                })
+              }
+            }}
+            className="text-accent hover:text-accent-dark font-semibold text-lg uppercase tracking-wider inline-flex items-center cursor-pointer"
           >
-            Ver proceso detallado
+            Conversemos sobre tu proyecto
             <svg
               className="w-5 h-5 ml-2"
               fill="none"
@@ -292,7 +304,7 @@ export default function Process() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

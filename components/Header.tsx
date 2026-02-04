@@ -21,13 +21,29 @@ export default function Header() {
   }, [])
 
   const navItems = [
-    { href: '/servicios', label: 'Servicios' },
-    { href: '/industrias', label: 'Industrias' },
-    { href: '/proceso', label: 'Proceso' },
-    { href: '/casos', label: 'Casos' },
-    { href: '/nosotros', label: 'Nosotros' },
-    { href: '/contacto', label: 'Contacto' },
+    { href: '#servicios', label: 'Servicios' },
+    { href: '#industrias', label: 'Industrias' },
+    { href: '#proceso', label: 'Proceso' },
+    { href: '#casos', label: 'Casos' },
+    { href: '#nosotros', label: 'Nosotros' },
+    { href: '#contacto', label: 'Contacto' },
   ]
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      const headerOffset = 96 // Height of fixed header
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      setIsMenuOpen(false)
+    }
+  }
 
   return (
     <header
@@ -51,24 +67,26 @@ export default function Header() {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
-                className="text-white hover:text-accent transition-colors font-medium uppercase text-base tracking-wider"
+                onClick={(e) => handleScrollTo(e, item.href)}
+                className="text-white hover:text-accent transition-colors font-medium uppercase text-base tracking-wider cursor-pointer"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
 
           {/* Button - Right */}
           <div className="hidden md:block flex-shrink-0">
-            <Link
-              href="/contacto"
-              className="btn-primary"
+            <a
+              href="#contacto"
+              onClick={(e) => handleScrollTo(e, '#contacto')}
+              className="btn-primary cursor-pointer"
             >
               Obtén tu análisis inicial
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,22 +131,22 @@ export default function Header() {
             >
               <div className="py-6 space-y-4">
                 {navItems.map((item) => (
-                  <Link
+                  <a
                     key={item.href}
                     href={item.href}
-                    className="block text-white hover:text-accent transition-colors font-medium uppercase text-sm tracking-wider py-2"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => handleScrollTo(e, item.href)}
+                    className="block text-white hover:text-accent transition-colors font-medium uppercase text-sm tracking-wider py-2 cursor-pointer"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 ))}
-                <Link
-                  href="/contacto"
-                  className="btn-primary inline-block mt-4"
-                  onClick={() => setIsMenuOpen(false)}
+                <a
+                  href="#contacto"
+                  onClick={(e) => handleScrollTo(e, '#contacto')}
+                  className="btn-primary inline-block mt-4 cursor-pointer"
                 >
                   Agendar Consultoría
-                </Link>
+                </a>
               </div>
             </motion.div>
           )}

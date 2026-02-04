@@ -14,14 +14,28 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <Hero />
+        <div id="inicio">
+          <Hero />
+        </div>
         <CredibilityBar />
-        <Services />
-        <Industries />
-        <Process />
-        <CaseStudy />
-        <WhyUs />
-        <ContactForm />
+        <div id="servicios">
+          <Services />
+        </div>
+        <div id="industrias">
+          <Industries />
+        </div>
+        <div id="proceso">
+          <Process />
+        </div>
+        <div id="casos">
+          <CaseStudy />
+        </div>
+        <div id="nosotros">
+          <WhyUs />
+        </div>
+        <div id="contacto">
+          <ContactForm />
+        </div>
       </main>
       <Footer />
     </>

@@ -52,10 +52,10 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <CTAButton href="/contacto" variant="primary">
+            <CTAButton href="#contacto" variant="primary">
             Obtén tu análisis inicial
             </CTAButton>
-            <CTAButton href="/casos" variant="secondary">
+            <CTAButton href="#casos" variant="secondary">
               Ver Proyectos
             </CTAButton>
           </div>
